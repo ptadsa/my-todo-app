@@ -74,7 +74,10 @@ const TodoApp = () => {
 
   // タスクを削除する関数
   const handleDeleteTodo = (Deleteid: number) => {
-    setTodos(todos.filter((todo) => todo.id !== Deleteid));
+    const confirmDelete = window.confirm("本当にこのタスクを削除しますか？");
+    if (confirmDelete) {
+      setTodos(todos.filter((todo) => todo.id !== Deleteid));
+    }
   };
 
   // 未完了のタスク数をカウントする - Count Incomplete task
