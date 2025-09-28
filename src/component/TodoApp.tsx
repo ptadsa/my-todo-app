@@ -72,6 +72,11 @@ const TodoApp = () => {
     setEditingText("");
   };
 
+  // タスクを削除する関数
+  const handleDeleteTodo = (Deleteid: number) => {
+    setTodos(todos.filter((todo) => todo.id !== Deleteid));
+  };
+
   // 未完了のタスク数をカウントする - Count Incomplete task
   const incompleteTodos: number = todos.filter((todo) => !todo.completed).length;
 
@@ -101,6 +106,9 @@ const TodoApp = () => {
                 <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>{todo.text}</span>
                 <button type="button" onClick={() => handleStartEditing(todo.id, todo.text)}>
                   編集
+                </button>
+                <button type="button" onClick={() => handleDeleteTodo(todo.id)}>
+                  削除
                 </button>
               </>
             )}
