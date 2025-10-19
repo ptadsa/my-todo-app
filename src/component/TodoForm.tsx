@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useTodo } from "../context/todoContext";
+import { useTodo } from "../context/TodoContext";
 
 export const TodoForm: React.FC = () => {
   //   新しいTodoを追加する関数 - Add new todo Function
   const [newTodo, setNewTodo] = useState<string>("");
   console.log(newTodo);
-  const { dispatch } = useTodo();
+  const { addTodo } = useTodo(); //custom hook usage
 
   //   新しいTodoを追加する関数 - Add new todo Function
   const handleAddTodo = (e: React.FormEvent) => {
@@ -14,7 +14,7 @@ export const TodoForm: React.FC = () => {
     if (newTodo.trim() === "") return;
 
     //   新しいTodoを作成 - Create new todo
-    dispatch({ type: "ADD_TODO", text: newTodo });
+    addTodo(newTodo); //custom hook usage
 
     //   入力フィールドをクリア - Clear input field
     setNewTodo("");
