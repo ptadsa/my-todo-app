@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 import { todoReducer, type Todo } from "../reducers/TodoReducer";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 // コンテキストが持つ値の型
 type TodoContextType = {
@@ -23,7 +24,18 @@ type TodoProviderProps = {
 };
 
 export const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
-  const [todos, dispatch] = useReducer(todoReducer, []);
+  // 1. useLocalStorageから初期値とセッターを取得
+  const [initialTodos, setStoredTodos] = useLocalStorage<Todo[]>("todos", []);
+  console.log(initialTodos);
+
+  // 2. useReducerの初期値→ローカルストレージの値に変更
+  const [todos, dispatch] = useReducer(todoReducer, initialTodos);
+
+  // 3. todosの状態が変更されたら、ローカルストレージに更新を加える
+  useEffect(() => {
+    setStoredTodos(todos);
+  }, [todos, setStoredTodos]);
+
   const addTodo = (text: string) => dispatch({ type: "ADD_TODO", text }); //custom hook add todo
   const toggleTodo = (id: number) => dispatch({ type: "TOGGLE_TODO", id }); //custom hook toggle todo
   const deleteTodo = (id: number) => dispatch({ type: "DELETE_TODO", id }); //custom hook delete todo
