@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useTodo } from "../context/TodoContext";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 export const TodoForm: React.FC = () => {
   //   新しいTodoを追加する関数 - Add new todo Function
@@ -20,11 +23,13 @@ export const TodoForm: React.FC = () => {
     setNewTodo("");
   };
   return (
-    <div>
-      <form onSubmit={handleAddTodo} action="">
-        <input type="text" value={newTodo} name="" id="newTodo" onChange={(e) => setNewTodo(e.target.value)} />
-        <button type="submit">Add</button>
+    <>
+      <form onSubmit={handleAddTodo} className="flex w-full items-center space-x-2">
+        <Input type="text" value={newTodo} name="" id="newTodo" onChange={(e) => setNewTodo(e.target.value)} />
+        <Button type="submit">
+          <Plus className="mr-2 h-2 w-2"></Plus>Add
+        </Button>
       </form>
-    </div>
+    </>
   );
 };
