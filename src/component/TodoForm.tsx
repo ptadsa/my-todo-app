@@ -27,7 +27,7 @@ export const TodoForm: React.FC = () => {
       <form onSubmit={handleAddTodo} className="flex w-full items-center space-x-2">
         <Input type="text" value={newTodo} name="" id="newTodo" onChange={(e) => setNewTodo(e.target.value)} />
         <Button type="submit">
-          <Plus className="mr-2 h-2 w-2"></Plus>Add
+          <Plus className="mr-2 h-2 w-2"></Plus>追加
         </Button>
       </form>
     </>

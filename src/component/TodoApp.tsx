@@ -16,7 +16,7 @@ const TodoApp = () => {
       <main className="container mx-auto flex flex-col items-center p-4">
         <Card className="w-full max-w-2xl">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold tracking-tight">TodoList</CardTitle>
+            <CardTitle className="text-2xl font-bold tracking-tight">Todo リスト</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             <TodoForm />
